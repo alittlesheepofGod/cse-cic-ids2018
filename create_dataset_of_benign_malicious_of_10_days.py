@@ -525,9 +525,14 @@ df_sum= pd.concat([df_friday1, df_friday2, df_friday3, df_thursday1, df_thursday
                    df_wednesday2, df_wednesday3], axis=0, ignore_index=True)
 
 
-
-
 df_sum.shape[0]
 
-
 df_sum.to_csv("processed_first_final_dataset_benign_malicious_of_10_days.csv", index=False)
+
+# only benign 0 and attack 1
+
+df_sum_2 = df_sum.copy()
+
+df_sum_2['Label'] = df_sum_2['Label'].replace([2,3,4,5,6,7,8,9,10,11,12,13,14],1)
+
+df_sum_2.to_csv("processed_first_final_dataset_benign_malicious_of_10_days_2.csv", index=False)
