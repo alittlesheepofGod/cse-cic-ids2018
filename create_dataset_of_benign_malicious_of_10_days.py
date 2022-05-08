@@ -494,10 +494,10 @@ df_wednesday3.drop_duplicates(inplace=True)
 df_wednesday3 = df_wednesday3.dropna()
 
 # take only 4049 Infilteration and 6349 benign
-mask_benign5 = (df_wednesday3["Label"] == "Benign") 
+mask_benign10 = (df_wednesday3["Label"] == "Benign") 
 mask_infilteration = (df_wednesday3["Label"] == "Infilteration") 
 
-df_wednesday3.loc[mask_benign5] = df_wednesday3.loc[mask_benign5].head(6349)
+df_wednesday3.loc[mask_benign5] = df_wednesday3.loc[mask_benign10].head(6349)
 df_wednesday3.loc[mask_infilteration] = df_wednesday3.loc[mask_infilteration].head(4049)
 
 print(df_wednesday3["Label"].value_counts()[['Benign']].sum())
@@ -516,3 +516,15 @@ print(df_wednesday3.info())
 # check again number of benign and dos slowhhtptest and dos hulk
 print(df_wednesday3["Label"].value_counts()[[0]].sum())
 print(df_wednesday3["Label"].value_counts()[[8]].sum())
+
+
+# sum data of 10 days into one data frame
+
+df_sum= pd.concat([df_friday1, df_friday2, df_friday3, df_thursday1, df_thursday2,\
+                  df_thursday3, df_thursday4, df_wednesday1, \
+                   df_wednesday2, df_wednesday3], axis=0, ignore_index=True)
+
+df_sum.shape[0]
+
+
+df_sum.to_csv("processed_first_final_dataset_benign_malicious_of_10_days.csv", index=False)
