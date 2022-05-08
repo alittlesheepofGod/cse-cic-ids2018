@@ -256,8 +256,169 @@ print(df_thursday2["Label"].value_counts()[[0]].sum())
 print(df_thursday2["Label"].value_counts()[[8]].sum())
 
 
+# 6. sixth day - Infilteration and benign - 15-02-2018
 
 
+df_thursday3 = pd.read_csv('/mnt/d/project-chau/dataset/cse-cic-ids108/dataset/02-15-2018.csv')
+
+# drop rows label = wrong rows
+df_thursday3.drop(df_thursday3.loc[df_thursday3["Label"] == "Label"].index, inplace=True)
+
+# turn protocol column to many protocol columns
+df_thursday3 = pd.get_dummies(df_thursday3, columns=['Protocol'], drop_first=True)
+
+# pop label column to last column
+df_thursday3.insert(len(df_thursday3.columns)-1, 'Label', df_thursday3.pop('Label'))
+
+df_thursday3.drop(columns=columns_to_drop, inplace=True)
+
+# drop duplicate values
+df_thursday3.drop_duplicates(inplace=True)
+
+# drop missing values
+df_thursday3 = df_thursday3.dropna()
+
+# take only 20754 DoS attacks-GoldenEye; 5495 DoS attacks-Slowloris and 6349 benign
+mask_benign6 = (df_thursday3["Label"] == "Benign") 
+mask_dos_goldeneye = (df_thursday3["Label"] == "DoS attacks-GoldenEye") 
+mask_dos_slowloris = (df_thursday3["Label"] == "DoS attacks-Slowloris") 
+
+df_thursday3.loc[mask_benign6] = df_thursday3.loc[mask_benign6].head(6349)
+df_thursday3.loc[mask_dos_goldeneye] = df_thursday3.loc[mask_dos_goldeneye].head(20754)
+df_thursday3.loc[mask_dos_slowloris] = df_thursday3.loc[mask_dos_slowloris].head(5495)
+
+print(df_thursday3["Label"].value_counts()[['Benign']].sum())
+print(df_thursday3["Label"].value_counts()[['DoS attacks-GoldenEye']].sum())
+print(df_thursday3["Label"].value_counts()[['DoS attacks-Slowloris']].sum())
+
+# drop rows having nan value
+df_thursday3 = df_thursday3.dropna()
+
+# replace Brute Force -Web attack label with value 4; Brute Force -XSS with value 5; \
+# SQL Injection with value 6 and benign with value 0
+df_thursday3.replace(to_replace=['DoS attacks-GoldenEye'], value=9, inplace=True)
+df_thursday3.replace(to_replace=['DoS attacks-Slowloris'], value=10, inplace=True)
+df_thursday3.replace(to_replace=['Benign'], value=0, inplace=True)
+
+print(df_thursday3.info())
+
+# check again number of benign and dos slowhhtptest and dos hulk
+print(df_thursday3["Label"].value_counts()[[0]].sum())
+print(df_thursday3["Label"].value_counts()[[9]].sum())
+print(df_thursday3["Label"].value_counts()[[10]].sum())
 
 
+# 7. seventh day - Infilteration and benign - 22-02-2018
 
+
+df_thursday4 = pd.read_csv('/mnt/d/project-chau/dataset/cse-cic-ids108/dataset/02-22-2018.csv')
+
+# drop rows label = wrong rows
+df_thursday4.drop(df_thursday4.loc[df_thursday4["Label"] == "Label"].index, inplace=True)
+
+# turn protocol column to many protocol columns
+df_thursday4 = pd.get_dummies(df_thursday4, columns=['Protocol'], drop_first=True)
+
+# pop label column to last column
+df_thursday4.insert(len(df_thursday4.columns)-1, 'Label', df_thursday4.pop('Label'))
+
+df_thursday4.drop(columns=columns_to_drop, inplace=True)
+
+# drop duplicate values
+df_thursday4.drop_duplicates(inplace=True)
+
+# drop missing values
+df_thursday4 = df_thursday4.dropna()
+
+# take only 20754 DoS attacks-GoldenEye; 5495 DoS attacks-Slowloris and 6349 benign
+mask_bruteforce_web = (df_thursday4["Label"] == "Brute Force -Web") 
+mask_bruteforce_xss = (df_thursday4["Label"] == "Brute Force -XSS") 
+mask_sql_injection = (df_thursday4["Label"] == "SQL Injection") 
+mask_benign7 = (df_thursday4["Label"] == "Benign") 
+
+df_thursday4.loc[mask_benign7] = df_thursday4.loc[mask_benign7].head(6349)
+df_thursday4.loc[mask_bruteforce_web] = df_thursday4.loc[mask_bruteforce_web].head(228)
+df_thursday4.loc[mask_bruteforce_xss] = df_thursday4.loc[mask_bruteforce_xss].head(79)
+df_thursday4.loc[mask_sql_injection] = df_thursday4.loc[mask_sql_injection].head(34)
+
+
+print(df_thursday4["Label"].value_counts()[['Benign']].sum())
+print(df_thursday4["Label"].value_counts()[['Brute Force -Web']].sum())
+print(df_thursday4["Label"].value_counts()[['Brute Force -XSS']].sum())
+print(df_thursday4["Label"].value_counts()[['SQL Injection']].sum())
+
+# drop rows having nan value
+df_thursday4 = df_thursday4.dropna()
+
+# replace Brute Force -Web attack label with value 4; Brute Force -XSS with value 5; \
+# SQL Injection with value 6 and benign with value 0
+df_thursday4.replace(to_replace=['Brute Force -Web'], value=4, inplace=True)
+df_thursday4.replace(to_replace=['Brute Force -XSS'], value=5, inplace=True)
+df_thursday4.replace(to_replace=['SQL Injection'], value=6, inplace=True)
+df_thursday4.replace(to_replace=['Benign'], value=0, inplace=True)
+
+print(df_thursday4.info())
+
+# check again number of benign and dos slowhhtptest and dos hulk
+print(df_thursday4["Label"].value_counts()[[0]].sum())
+print(df_thursday4["Label"].value_counts()[[4]].sum())
+print(df_thursday4["Label"].value_counts()[[5]].sum())
+print(df_thursday4["Label"].value_counts()[[6]].sum())
+
+
+# 8. 8th day - FTP-Brute Force, SSH-BruteForce and benign - 14-02-2018
+
+
+df_thursday4 = pd.read_csv('/mnt/d/project-chau/dataset/cse-cic-ids108/dataset/02-14-2018.csv')
+
+# drop rows label = wrong rows
+df_thursday4.drop(df_thursday4.loc[df_thursday4["Label"] == "Label"].index, inplace=True)
+
+# turn protocol column to many protocol columns
+df_thursday4 = pd.get_dummies(df_thursday4, columns=['Protocol'], drop_first=True)
+
+# pop label column to last column
+df_thursday4.insert(len(df_thursday4.columns)-1, 'Label', df_thursday4.pop('Label'))
+
+df_thursday4.drop(columns=columns_to_drop, inplace=True)
+
+# drop duplicate values
+df_thursday4.drop_duplicates(inplace=True)
+
+# drop missing values
+df_thursday4 = df_thursday4.dropna()
+
+# take only 20754 DoS attacks-GoldenEye; 5495 DoS attacks-Slowloris and 6349 benign
+mask_bruteforce_web = (df_thursday4["Label"] == "Brute Force -Web") 
+mask_bruteforce_xss = (df_thursday4["Label"] == "Brute Force -XSS") 
+mask_sql_injection = (df_thursday4["Label"] == "SQL Injection") 
+mask_benign7 = (df_thursday4["Label"] == "Benign") 
+
+df_thursday4.loc[mask_benign7] = df_thursday4.loc[mask_benign7].head(6349)
+df_thursday4.loc[mask_bruteforce_web] = df_thursday4.loc[mask_bruteforce_web].head(228)
+df_thursday4.loc[mask_bruteforce_xss] = df_thursday4.loc[mask_bruteforce_xss].head(79)
+df_thursday4.loc[mask_sql_injection] = df_thursday4.loc[mask_sql_injection].head(34)
+
+
+print(df_thursday4["Label"].value_counts()[['Benign']].sum())
+print(df_thursday4["Label"].value_counts()[['Brute Force -Web']].sum())
+print(df_thursday4["Label"].value_counts()[['Brute Force -XSS']].sum())
+print(df_thursday4["Label"].value_counts()[['SQL Injection']].sum())
+
+# drop rows having nan value
+df_thursday4 = df_thursday4.dropna()
+
+# replace Brute Force -Web attack label with value 4; Brute Force -XSS with value 5; \
+# SQL Injection with value 6 and benign with value 0
+df_thursday4.replace(to_replace=['Brute Force -Web'], value=4, inplace=True)
+df_thursday4.replace(to_replace=['Brute Force -XSS'], value=5, inplace=True)
+df_thursday4.replace(to_replace=['SQL Injection'], value=6, inplace=True)
+df_thursday4.replace(to_replace=['Benign'], value=0, inplace=True)
+
+print(df_thursday4.info())
+
+# check again number of benign and dos slowhhtptest and dos hulk
+print(df_thursday4["Label"].value_counts()[[0]].sum())
+print(df_thursday4["Label"].value_counts()[[4]].sum())
+print(df_thursday4["Label"].value_counts()[[5]].sum())
+print(df_thursday4["Label"].value_counts()[[6]].sum())
