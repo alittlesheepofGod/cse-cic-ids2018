@@ -34,11 +34,11 @@ df_friday1.drop_duplicates(inplace=True)
 # drop missing values
 df_friday1 = df_friday1.dropna()
 
-# take only 14310 bot and 6349 benign
+# take only 14310 bot and 14721 benign
 mask_bot = (df_friday1["Label"] == "Bot") 
 mask_benign = (df_friday1["Label"] == "Benign") 
 df_friday1.loc[mask_bot] = df_friday1.loc[mask_bot].head(14310)
-df_friday1.loc[mask_benign] = df_friday1.loc[mask_benign].head(6349)
+df_friday1.loc[mask_benign] = df_friday1.loc[mask_benign].head(14721)
 
 # drop rows having nan value
 df_friday1 = df_friday1.dropna()
@@ -78,14 +78,14 @@ df_friday2.drop_duplicates(inplace=True)
 # drop missing values
 df_friday2 = df_friday2.dropna()
 
-# take only 55 DoS attacks-SlowHTTPTest and 23334 DoS attacks-Hulk and 6349 benign
+# take only 55 DoS attacks-SlowHTTPTest and 23334 DoS attacks-Hulk and 14721 benign
 mask_dos_slowhttp = (df_friday2["Label"] == "DoS attacks-SlowHTTPTest") 
 mask_dos_hulk = (df_friday2["Label"] == "DoS attacks-Hulk") 
 mask_benign2 = (df_friday2["Label"] == "Benign") 
 
 df_friday2.loc[mask_dos_slowhttp] = df_friday2.loc[mask_dos_slowhttp].head(55)
 df_friday2.loc[mask_dos_hulk] = df_friday2.loc[mask_dos_hulk].head(23334)
-df_friday2.loc[mask_benign2] = df_friday2.loc[mask_benign2].head(6349)
+df_friday2.loc[mask_benign2] = df_friday2.loc[mask_benign2].head(14721)
 
 # drop rows having nan value
 df_friday2 = df_friday2.dropna()
@@ -127,7 +127,7 @@ df_friday3.drop_duplicates(inplace=True)
 # drop missing values
 df_friday3 = df_friday3.dropna()
 
-# take only 342 Brute Force Web; 150 Brute Force XSS and 51 SQL Injection and 6349 benign
+# take only 342 Brute Force Web; 150 Brute Force XSS and 51 SQL Injection and 14721 benign
 mask_bruteforce_web = (df_friday3["Label"] == "Brute Force -Web") 
 mask_bruteforce_xss = (df_friday3["Label"] == "Brute Force -XSS") 
 mask_sql_injection = (df_friday3["Label"] == "SQL Injection") 
@@ -136,7 +136,7 @@ mask_benign3 = (df_friday3["Label"] == "Benign")
 df_friday3.loc[mask_bruteforce_web] = df_friday3.loc[mask_bruteforce_web].head(342)
 df_friday3.loc[mask_bruteforce_xss] = df_friday3.loc[mask_bruteforce_xss].head(150)
 df_friday3.loc[mask_sql_injection] = df_friday3.loc[mask_sql_injection].head(51)
-df_friday3.loc[mask_benign3] = df_friday3.loc[mask_benign3].head(6349)
+df_friday3.loc[mask_benign3] = df_friday3.loc[mask_benign3].head(14721)
 
 print(df_friday3["Label"].value_counts()[['Brute Force -Web']].sum())
 print(df_friday3["Label"].value_counts()[['Brute Force -XSS']].sum())
@@ -184,11 +184,11 @@ df_thursday1.drop_duplicates(inplace=True)
 # drop missing values
 df_thursday1 = df_thursday1.dropna()
 
-# take only 28810 DDoS LOIC HTTP and 6349 benign
+# take only 28810 DDoS LOIC HTTP and 14721 benign
 mask_benign4 = (df_thursday1["Label"] == "Benign") 
 mask_dos_loichttp = (df_thursday1["Label"] == "DDoS attacks-LOIC-HTTP") 
 
-df_thursday1.loc[mask_benign4] = df_thursday1.loc[mask_benign4].head(6349)
+df_thursday1.loc[mask_benign4] = df_thursday1.loc[mask_benign4].head(14721)
 df_thursday1.loc[mask_dos_loichttp] = df_thursday1.loc[mask_dos_loichttp].head(28810)
 
 print(df_thursday1["Label"].value_counts()[['Benign']].sum())
@@ -231,11 +231,11 @@ df_thursday2.drop_duplicates(inplace=True)
 # drop missing values
 df_thursday2 = df_thursday2.dropna()
 
-# take only 4049 Infilteration and 6349 benign
+# take only 4049 Infilteration and 14721 benign
 mask_benign5 = (df_thursday2["Label"] == "Benign") 
 mask_infilteration = (df_thursday2["Label"] == "Infilteration") 
 
-df_thursday2.loc[mask_benign5] = df_thursday2.loc[mask_benign5].head(6349)
+df_thursday2.loc[mask_benign5] = df_thursday2.loc[mask_benign5].head(14721)
 df_thursday2.loc[mask_infilteration] = df_thursday2.loc[mask_infilteration].head(4049)
 
 print(df_thursday2["Label"].value_counts()[['Benign']].sum())
@@ -278,12 +278,12 @@ df_thursday3.drop_duplicates(inplace=True)
 # drop missing values
 df_thursday3 = df_thursday3.dropna()
 
-# take only 20754 DoS attacks-GoldenEye; 5495 DoS attacks-Slowloris and 6349 benign
+# take only 20754 DoS attacks-GoldenEye; 5495 DoS attacks-Slowloris and 14721 benign
 mask_benign6 = (df_thursday3["Label"] == "Benign") 
 mask_dos_goldeneye = (df_thursday3["Label"] == "DoS attacks-GoldenEye") 
 mask_dos_slowloris = (df_thursday3["Label"] == "DoS attacks-Slowloris") 
 
-df_thursday3.loc[mask_benign6] = df_thursday3.loc[mask_benign6].head(6349)
+df_thursday3.loc[mask_benign6] = df_thursday3.loc[mask_benign6].head(14721)
 df_thursday3.loc[mask_dos_goldeneye] = df_thursday3.loc[mask_dos_goldeneye].head(20754)
 df_thursday3.loc[mask_dos_slowloris] = df_thursday3.loc[mask_dos_slowloris].head(5495)
 
@@ -330,13 +330,13 @@ df_thursday4.drop_duplicates(inplace=True)
 # drop missing values
 df_thursday4 = df_thursday4.dropna()
 
-# take only 20754 DoS attacks-GoldenEye; 5495 DoS attacks-Slowloris and 6349 benign
+# take only 20754 DoS attacks-GoldenEye; 5495 DoS attacks-Slowloris and 14721 benign
 mask_bruteforce_web = (df_thursday4["Label"] == "Brute Force -Web") 
 mask_bruteforce_xss = (df_thursday4["Label"] == "Brute Force -XSS") 
 mask_sql_injection = (df_thursday4["Label"] == "SQL Injection") 
 mask_benign7 = (df_thursday4["Label"] == "Benign") 
 
-df_thursday4.loc[mask_benign7] = df_thursday4.loc[mask_benign7].head(6349)
+df_thursday4.loc[mask_benign7] = df_thursday4.loc[mask_benign7].head(14721)
 df_thursday4.loc[mask_bruteforce_web] = df_thursday4.loc[mask_bruteforce_web].head(228)
 df_thursday4.loc[mask_bruteforce_xss] = df_thursday4.loc[mask_bruteforce_xss].head(79)
 df_thursday4.loc[mask_sql_injection] = df_thursday4.loc[mask_sql_injection].head(34)
@@ -388,12 +388,12 @@ df_wednesday1.drop_duplicates(inplace=True)
 # drop missing values
 df_wednesday1 = df_wednesday1.dropna()
 
-# take only 54 FTP-BruteForce; 9380 SSH-Bruteforce and 6349 benign
+# take only 54 FTP-BruteForce; 9380 SSH-Bruteforce and 14721 benign
 mask_ftp_bruteforce = (df_wednesday1["Label"] == "FTP-BruteForce") 
 mask_ssh_bruteforce = (df_wednesday1["Label"] == "SSH-Bruteforce") 
 mask_benign8 = (df_wednesday1["Label"] == "Benign") 
 
-df_wednesday1.loc[mask_benign8] = df_wednesday1.loc[mask_benign8].head(6349)
+df_wednesday1.loc[mask_benign8] = df_wednesday1.loc[mask_benign8].head(14721)
 df_wednesday1.loc[mask_ftp_bruteforce] = df_wednesday1.loc[mask_ftp_bruteforce].head(54)
 df_wednesday1.loc[mask_ssh_bruteforce] = df_wednesday1.loc[mask_ssh_bruteforce].head(9380)
 
@@ -441,12 +441,12 @@ df_wednesday2.drop_duplicates(inplace=True)
 # drop missing values
 df_wednesday2 = df_wednesday2.dropna()
 
-# take only 1730 DDOS attack-LOIC-UDP; 34301 DDOS attack-HOIC and 6349 benign
+# take only 1730 DDOS attack-LOIC-UDP; 34301 DDOS attack-HOIC and 14721 benign
 mask_ddos_loicudp = (df_wednesday2["Label"] == "DDOS attack-LOIC-UDP") 
 mask_ddos_hoic = (df_wednesday2["Label"] == "DDOS attack-HOIC") 
 mask_benign9 = (df_wednesday2["Label"] == "Benign") 
 
-df_wednesday2.loc[mask_benign9] = df_wednesday2.loc[mask_benign9].head(6349)
+df_wednesday2.loc[mask_benign9] = df_wednesday2.loc[mask_benign9].head(14721)
 df_wednesday2.loc[mask_ddos_loicudp] = df_wednesday2.loc[mask_ddos_loicudp].head(1730)
 df_wednesday2.loc[mask_ddos_hoic] = df_wednesday2.loc[mask_ddos_hoic].head(34301)
 
@@ -493,11 +493,11 @@ df_wednesday3.drop_duplicates(inplace=True)
 # drop missing values
 df_wednesday3 = df_wednesday3.dropna()
 
-# take only 4049 Infilteration and 6349 benign
+# take only 4049 Infilteration and 14721 benign
 mask_benign10 = (df_wednesday3["Label"] == "Benign") 
 mask_infilteration = (df_wednesday3["Label"] == "Infilteration") 
 
-df_wednesday3.loc[mask_benign10] = df_wednesday3.loc[mask_benign10].head(6349)
+df_wednesday3.loc[mask_benign10] = df_wednesday3.loc[mask_benign10].head(14721)
 df_wednesday3.loc[mask_infilteration] = df_wednesday3.loc[mask_infilteration].head(4049)
 
 print(df_wednesday3["Label"].value_counts()[['Benign']].sum())
